@@ -66,7 +66,7 @@ begin
   end;
 
   SetMainForm(frmPainelGestao);
-  frmPainelGestao.Show();
+  frmPainelGestao.Show;
 
   Close;
 end;
@@ -77,7 +77,7 @@ begin
   if not Inicialized then
   begin
     Inicialized := true;
-    InicializeApplication();
+    InicializeApplication;
   end;
 end;
 
