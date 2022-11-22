@@ -95,6 +95,7 @@ object frmCriarConta: TfrmCriarConta
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      OnClick = pnlCliquepararegistrarClick
       ExplicitWidth = 422
     end
     object edtContaLoginUsuario: TEdit
@@ -112,7 +113,6 @@ object frmCriarConta: TfrmCriarConta
       ParentFont = False
       TabOrder = 0
       TextHint = 'Digite Seu Nome'
-      ExplicitWidth = 276
     end
     object edtContaLoginSenha: TEdit
       Left = 64
@@ -130,7 +130,6 @@ object frmCriarConta: TfrmCriarConta
       PasswordChar = '*'
       TabOrder = 1
       TextHint = 'Digite Sua Senha'
-      ExplicitWidth = 276
     end
     object edtContaLogin: TEdit
       Left = 64
@@ -147,7 +146,6 @@ object frmCriarConta: TfrmCriarConta
       ParentFont = False
       TabOrder = 2
       TextHint = 'Digite seu Login'
-      ExplicitWidth = 276
     end
     object edtContaCPF: TEdit
       Left = 64
@@ -164,7 +162,6 @@ object frmCriarConta: TfrmCriarConta
       ParentFont = False
       TabOrder = 3
       TextHint = 'Digite Seu CPF'
-      ExplicitWidth = 276
     end
     object edtContaConfSenha: TEdit
       Left = 64
@@ -181,7 +178,6 @@ object frmCriarConta: TfrmCriarConta
       ParentFont = False
       TabOrder = 4
       TextHint = 'Confirme Sua Senha'
-      ExplicitWidth = 276
     end
     inline frmAutenticar1: TfrmAutenticar
       Left = 85
@@ -195,6 +191,7 @@ object frmCriarConta: TfrmCriarConta
       TabOrder = 5
       ExplicitLeft = 85
       ExplicitTop = 311
+      ExplicitWidth = 190
       inherited spbBotaoFrame: TSpeedButton
         Left = 0
         Top = 0

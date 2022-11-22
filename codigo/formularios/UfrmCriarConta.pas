@@ -22,8 +22,10 @@ type
     edtContaCPF: TEdit;
     edtContaConfSenha: TEdit;
     frmAutenticar1: TfrmAutenticar;
+    procedure pnlCliquepararegistrarClick(Sender: TObject);
   private
     { Private declarations }
+    procedure SetarFormularioLogin(PFromularioLogin: TForm);
   public
     { Public declarations }
   end;
@@ -34,5 +36,26 @@ var
 implementation
 
 {$R *.dfm}
+
+uses UfrmLogin;
+
+procedure TfrmCriarConta.pnlCliquepararegistrarClick(Sender: TObject);
+begin
+  if not Assigned(frmLogin) then
+  begin
+    Application.CreateForm(TfrmLogin, frmLogin);
+  end;
+  SetarFormularioLogin(frmLogin);
+  frmLogin.Show;
+
+  Close;
+end;
+procedure TfrmCriarConta.SetarFormularioLogin(PFromularioLogin: TForm);
+var
+  tmpMain: ^TCustomForm;
+begin
+  tmpMain := @Application.Mainform;
+  tmpMain^ := PFromularioLogin;
+end;
 
 end.

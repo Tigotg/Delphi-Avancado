@@ -14,7 +14,10 @@ uses
   UfrmComandas in '..\codigo\formularios\UfrmComandas.pas' {frmComandas},
   uResourceUtils in '..\codigo\utils\uResourceUtils.pas',
   UfrmLogin in '..\codigo\formularios\UfrmLogin.pas' {frmLogin},
-  UfrmAutenticar in '..\codigo\frames\UfrmAutenticar.pas' {frmAutenticar: TFrame};
+  UfrmAutenticar in '..\codigo\frames\UfrmAutenticar.pas' {frmAutenticar: TFrame},
+  UfrmCriarConta in '..\codigo\formularios\UfrmCriarConta.pas' {frmCriarConta},
+  Uusuario in '..\codigo\Modelos\Uusuario.pas',
+  UusuarioDao in '..\codigo\dao\UusuarioDao.pas';
 
 {$R *.res}
 
@@ -24,5 +27,6 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.CreateForm(TdmRavin, dmRavin);
   Application.CreateForm(TfrmSplash, frmSplash);
+  Application.CreateForm(TfrmCriarConta, frmCriarConta);
   Application.Run;
 end.

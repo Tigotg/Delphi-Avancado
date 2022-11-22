@@ -25,8 +25,6 @@ object frmLogin: TfrmLogin
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 143
-    ExplicitTop = 48
     DesignSize = (
       376
       490)
@@ -1254,6 +1252,7 @@ object frmLogin: TfrmLogin
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      OnClick = pnlCliquepararegistrarClick
     end
     object edtLoginUsuario: TEdit
       Left = 64
@@ -1270,7 +1269,6 @@ object frmLogin: TfrmLogin
       ParentFont = False
       TabOrder = 0
       TextHint = 'Digite Seu Usu'#225'rio'
-      ExplicitWidth = 241
     end
     object edtLoginSenha: TEdit
       Left = 64
@@ -1288,7 +1286,6 @@ object frmLogin: TfrmLogin
       PasswordChar = '*'
       TabOrder = 1
       TextHint = 'Digite Sua Senha'
-      ExplicitWidth = 241
     end
     inline frmAutenticar1: TfrmAutenticar
       Left = 64
@@ -1302,12 +1299,14 @@ object frmLogin: TfrmLogin
       TabOrder = 2
       ExplicitLeft = 64
       ExplicitTop = 320
+      ExplicitWidth = 236
       inherited spbBotaoFrame: TSpeedButton
         Left = 0
         Top = 0
         Width = 236
         Height = 45
         Align = alClient
+        OnClick = frmAutenticar1spbBotaoFrameClick
         ExplicitLeft = 72
         ExplicitTop = 20
         ExplicitWidth = 241
@@ -1324,7 +1323,15 @@ object frmLogin: TfrmLogin
     Color = clTeal
     ParentBackground = False
     TabOrder = 1
-    ExplicitHeight = 546
+    object Button1: TButton
+      Left = 56
+      Top = 96
+      Width = 75
+      Height = 25
+      Caption = 'Button1'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
   end
   object Panel3: TPanel
     Left = 513
@@ -1335,7 +1342,5 @@ object frmLogin: TfrmLogin
     Color = clTeal
     ParentBackground = False
     TabOrder = 2
-    ExplicitLeft = 524
-    ExplicitHeight = 546
   end
 end
