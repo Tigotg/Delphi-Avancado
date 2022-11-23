@@ -17,14 +17,12 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    pnlCliquepararegistrar: TLabel;
+    lblCliquepararegistrar: TLabel;
     edtLoginUsuario: TEdit;
     edtLoginSenha: TEdit;
     frmAutenticar1: TfrmAutenticar;
-    Button1: TButton;
-    procedure pnlCliquepararegistrarClick(Sender: TObject);
+    procedure lblCliquepararegistrarClick(Sender: TObject);
     procedure frmAutenticar1spbBotaoFrameClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     procedure SetarFormPrincipal(PNovoFormulario: TForm);
@@ -41,28 +39,28 @@ implementation
 
 uses UfrmCriarConta, UfrmPainelGestao, UusuarioDao;
 
-procedure TfrmLogin.Button1Click(Sender: TObject);
-var
-  LUsuario: TUsuario;
-  LDao: TUsuarioDao;
-begin
-  LUsuario := TUsuario.Create;
-  with LUsuario do
-  begin
-    Login := 'Teste';
-    Senha := '123';
-    PessoaId := 1;
-    CriadoEm := Now();
-    CriadoPor := 'Tiago';
-    AlteradoEm := Now();
-    AlteradoPor := 'Tiago';
-  end;
-  LDao := TUsuarioDao.Create;
-  LDao.InserirUsuario(LUsuario);
-
-  FreeAndNil(LDao);
-  FreeAndNil(LUsuario);
-end;
+//procedure TfrmLogin.Button1Click(Sender: TObject);
+//var
+//  LUsuario: TUsuario;
+//  LDao: TUsuarioDao;
+//begin
+//  LUsuario := TUsuario.Create;
+//  with LUsuario do
+//  begin
+//    Login := 'Teste';
+//    Senha := '123';
+//    PessoaId := 1;
+//    CriadoEm := Now();
+//    CriadoPor := 'Tiago';
+//    AlteradoEm := Now();
+//    AlteradoPor := 'Tiago';
+//  end;
+//  LDao := TUsuarioDao.Create;
+//  LDao.InserirUsuario(LUsuario);
+//
+//  FreeAndNil(LDao);
+//  FreeAndNil(LUsuario);
+//end;
 
 procedure TfrmLogin.frmAutenticar1spbBotaoFrameClick(Sender: TObject);
 var
@@ -99,7 +97,7 @@ begin
   FreeAndNil(LUsuario);
 end;
 
-procedure TfrmLogin.pnlCliquepararegistrarClick(Sender: TObject);
+procedure TfrmLogin.lblCliquepararegistrarClick(Sender: TObject);
 begin
   if not assigned(frmCriarConta) then
   begin

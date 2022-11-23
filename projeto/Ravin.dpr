@@ -17,7 +17,8 @@ uses
   UfrmAutenticar in '..\codigo\frames\UfrmAutenticar.pas' {frmAutenticar: TFrame},
   UfrmCriarConta in '..\codigo\formularios\UfrmCriarConta.pas' {frmCriarConta},
   Uusuario in '..\codigo\Modelos\Uusuario.pas',
-  UusuarioDao in '..\codigo\dao\UusuarioDao.pas';
+  UusuarioDao in '..\codigo\dao\UusuarioDao.pas',
+  UValidadorUsuario in '..\codigo\validadores\UValidadorUsuario.pas';
 
 {$R *.res}
 

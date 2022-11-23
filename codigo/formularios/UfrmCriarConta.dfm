@@ -56,7 +56,7 @@ object frmCriarConta: TfrmCriarConta
       Left = -1
       Top = 85
       Width = 376
-      Height = 16
+      Height = 20
       Alignment = taCenter
       Anchors = [akLeft, akTop, akRight]
       AutoSize = False
@@ -67,7 +67,6 @@ object frmCriarConta: TfrmCriarConta
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitWidth = 422
     end
     object Label3: TLabel
       Left = -1
@@ -80,7 +79,7 @@ object frmCriarConta: TfrmCriarConta
       Caption = 'Possui conta?'
       ExplicitWidth = 422
     end
-    object pnlCliquepararegistrar: TLabel
+    object lblCliquepararegistrar: TLabel
       Left = -1
       Top = 419
       Width = 376
@@ -95,7 +94,7 @@ object frmCriarConta: TfrmCriarConta
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      OnClick = pnlCliquepararegistrarClick
+      OnClick = lblCliquepararegistrarClick
       ExplicitWidth = 422
     end
     object edtContaLoginUsuario: TEdit
@@ -176,6 +175,7 @@ object frmCriarConta: TfrmCriarConta
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      PasswordChar = '*'
       TabOrder = 4
       TextHint = 'Confirme Sua Senha'
     end
@@ -201,6 +201,7 @@ object frmCriarConta: TfrmCriarConta
         Anchors = []
         Caption = 'Registrar'
         ParentBiDiMode = False
+        OnClick = frmAutenticar1spbBotaoFrameClick
         ExplicitLeft = -184
         ExplicitTop = -3
         ExplicitWidth = 241

@@ -1237,7 +1237,7 @@ object frmLogin: TfrmLogin
       AutoSize = False
       Caption = 'N'#227'o possui conta?'
     end
-    object pnlCliquepararegistrar: TLabel
+    object lblCliquepararegistrar: TLabel
       Left = -1
       Top = 427
       Width = 376
@@ -1252,7 +1252,7 @@ object frmLogin: TfrmLogin
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      OnClick = pnlCliquepararegistrarClick
+      OnClick = lblCliquepararegistrarClick
     end
     object edtLoginUsuario: TEdit
       Left = 64
@@ -1323,15 +1323,6 @@ object frmLogin: TfrmLogin
     Color = clTeal
     ParentBackground = False
     TabOrder = 1
-    object Button1: TButton
-      Left = 56
-      Top = 96
-      Width = 75
-      Height = 25
-      Caption = 'Button1'
-      TabOrder = 0
-      OnClick = Button1Click
-    end
   end
   object Panel3: TPanel
     Left = 513
