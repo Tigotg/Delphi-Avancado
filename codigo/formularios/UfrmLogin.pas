@@ -37,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmCriarConta, UfrmPainelGestao, UusuarioDao;
+uses UfrmCriarConta, UfrmPainelGestao, UusuarioDao, UiniUtils;
 
 //procedure TfrmLogin.Button1Click(Sender: TObject);
 //var
@@ -80,6 +80,11 @@ begin
 
   if assigned(LUsuario) then
   begin
+    //Conseguiu Logar
+
+    TIniUtils.gravarPropriedade(TSecao.INFORMACOES_GERAIS, TPROPRIEDADE.LOGADO,
+                                TIniUtils.VALOR_VERDADEIRO);
+
     if not assigned(frmPainelGestao) then
     begin
       Application.CreateForm(TfrmPainelGestao, frmPainelGestao);

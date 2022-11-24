@@ -47,39 +47,44 @@ var
   Ldao: TUsuarioDao;
 begin
   try
-    // REGISTRAR
-    // Ler os valores
-    // Criar o objeto de usuário
-    // Setar valores
-    // Criar um DAO
-    // Chamar o método para salvar o usuário
-    LUsuario := TUsuario.Create;
-    LUsuario.Login := edtContaLoginUsuario.Text;
-    LUsuario.Senha := edtContaLoginSenha.Text;
-    LUsuario.PessoaId := 1;
-    LUsuario.CriadoEm := Now();
-    LUsuario.CriadoPor := 'Admin';
-    LUsuario.AlteradoEm := Now();
-    LUsuario.AlteradoPor := 'Admin';
+    try
+      // REGISTRAR
+      // Ler os valores
+      // Criar o objeto de usuário
+      // Setar valores
+      // Criar um DAO
+      // Chamar o método para salvar o usuário
+      LUsuario := TUsuario.Create;
+      LUsuario.Login := edtContaLoginUsuario.Text;
+      LUsuario.Senha := edtContaLoginSenha.Text;
+      LUsuario.PessoaId := 1;
+      LUsuario.CriadoEm := Now;
+      LUsuario.CriadoPor := 'Admin';
+      LUsuario.AlteradoEm := Now;
+      LUsuario.AlteradoPor := 'Admin';
 
-    TValidadorPessoa.Validar(LUsuario, edtContaConfSenha.Text);
+      TValidadorPessoa.Validar(LUsuario, edtContaConfSenha.Text);
 
-    Ldao := TUsuarioDao.Create;
-    Ldao.InserirUsuario(LUsuario);
-    
-    FreeAndNil(Ldao);
-  except
-    on E:EMySQLNativeException do
-    begin
-      ShowMessage('Erro ao inserir o usuário no Banco')
+      Ldao := TUsuarioDao.Create;
+      Ldao.InserirUsuario(LUsuario);
+    except
+      on E: EMySQLNativeException do
+      begin
+        ShowMessage('Erro ao inserir o usuário no Banco')
+      end;
+      on E: Exception do
+      begin
+        ShowMessage('E.Message');
+      end;
     end;
-    on E: Exception do
+  finally
+    if Assigned(Ldao) then
     begin
-      ShowMessage('E.Message');
+      FreeAndNil(Ldao);
     end;
+
+    FreeAndNil(LUsuario);
   end;
-
-  FreeAndNil(LUsuario);
 end;
 
 procedure TfrmCriarConta.lblCliquepararegistrarClick(Sender: TObject);

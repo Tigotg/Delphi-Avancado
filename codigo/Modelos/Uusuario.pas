@@ -9,6 +9,7 @@ type TUsuario = class
     FSenha: String;
     FPessoaId: Integer;
     FCriadoEm: TdateTime;
+
     FCriadoPor: String;
     FAlteradoEm: TDateTime;
     FAlteradoPor: String;

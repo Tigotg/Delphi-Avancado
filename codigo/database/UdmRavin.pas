@@ -20,8 +20,8 @@ type
     procedure cnxBancoDeDadosAfterConnect(Sender: TObject);
   private
     { Private declarations }
-    procedure CriarTabelas();
-    procedure InserirDados();
+    procedure CriarTabelas;
+    procedure InserirDados;
   public
     { Public declarations }
   end;

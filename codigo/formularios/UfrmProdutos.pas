@@ -118,10 +118,10 @@ begin
   if tblProdutos.State = TDataSetState.dsInsert then
   begin
     tblProdutoscriadoPor.Value := 'Marcio';
-    tblProdutoscriadoEm.Value := Now();
+    tblProdutoscriadoEm.Value := Now;
   end;
   tblProdutosalteradoPor.Value := 'Marcio';
-  tblProdutosalteradoEm.Value := Now();
+  tblProdutosalteradoEm.Value := Now;
 end;
 
 end.

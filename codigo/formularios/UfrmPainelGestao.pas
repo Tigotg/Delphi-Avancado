@@ -59,7 +59,7 @@ implementation
 uses
   UfrmSobre,
   UfrmProdutos,
-  UfrmMesas, UfrmComandas;
+  UfrmMesas, UfrmComandas, UiniUtils;
 
 procedure TfrmPainelGestao.FrameMenuItemMesasLabelTitleClick(Sender: TObject);
 begin
@@ -67,7 +67,7 @@ begin
   begin
     Application.CreateForm(TfrmMesas, frmMesas);
   end;
-  frmMesas.show();
+  frmMesas.show;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemComandaslblTituloClick(Sender: TObject);
@@ -76,7 +76,7 @@ begin
     Application.CreateForm(TfrmComandas, frmComandas);
   end;
 
-  frmComandas.show();
+  frmComandas.show;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemMesaslblTituloClick(Sender: TObject);
@@ -85,7 +85,7 @@ begin
   begin
     Application.CreateForm(TfrmMesas, frmMesas);
   end;
-  frmMesas.show();
+  frmMesas.show;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemProdutoslblTituloClick(Sender: TObject);
@@ -94,12 +94,14 @@ begin
   begin
     Application.CreateForm(TfrmProdutos, frmProdutos);
   end;
-  frmProdutos.show();
+  frmProdutos.show;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemSairlblTituloClick(Sender: TObject);
 begin
-  Application.Terminate();
+TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS,
+TPROPRIEDADE.LOGADO, TIniUtils.VALOR_FALSO);
+  Application.Terminate;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemSobrelblTituloClick(Sender: TObject);
@@ -108,7 +110,7 @@ begin
   begin
     Application.CreateForm(TfrmSobre, frmSobre)
   end;
-  frmSobre.show();
+  frmSobre.show;
 end;
 
 end.
