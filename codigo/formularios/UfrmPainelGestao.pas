@@ -17,7 +17,7 @@ uses
   Vcl.ExtCtrls,
   Vcl.StdCtrls,
   Vcl.Imaging.pngimage,
-  UfrmItemMenu;
+  UfrmItemMenu, UfrmUsuarios;
 
 type
   TfrmPainelGestao = class(TForm)

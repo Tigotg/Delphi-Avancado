@@ -19,7 +19,8 @@ uses
   Uusuario in '..\codigo\Modelos\Uusuario.pas',
   UusuarioDao in '..\codigo\dao\UusuarioDao.pas',
   UValidadorUsuario in '..\codigo\validadores\UValidadorUsuario.pas',
-  UiniUtils in '..\codigo\utils\UiniUtils.pas';
+  UiniUtils in '..\codigo\utils\UiniUtils.pas',
+  UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {frmListaLogin};
 
 {$R *.res}
 
@@ -30,5 +31,6 @@ begin
   Application.CreateForm(TdmRavin, dmRavin);
   Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TfrmCriarConta, frmCriarConta);
+  Application.CreateForm(TfrmListaLogin, frmListaLogin);
   Application.Run;
 end.
