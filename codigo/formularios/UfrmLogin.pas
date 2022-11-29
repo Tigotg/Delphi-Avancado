@@ -25,7 +25,6 @@ type
     procedure frmAutenticar1spbBotaoFrameClick(Sender: TObject);
   private
     { Private declarations }
-    procedure SetarFormPrincipal(PNovoFormulario: TForm);
   public
     { Public declarations }
   end;
@@ -37,7 +36,7 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmCriarConta, UfrmPainelGestao, UusuarioDao, UiniUtils;
+uses UfrmCriarConta, UfrmPainelGestao, UusuarioDao, UiniUtils, uFormUtils;
 
 //procedure TfrmLogin.Button1Click(Sender: TObject);
 //var
@@ -89,7 +88,7 @@ begin
     begin
       Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
     end;
-    SetarFormPrincipal(frmPainelGestao);
+    TFormUtils.SetarTelaPrincipal(frmPainelGestao);
     frmPainelGestao.Show;
 
     Close;
@@ -108,18 +107,10 @@ begin
   begin
     Application.CreateForm(TfrmCriarConta, frmCriarConta);
   end;
-  SetarFormPrincipal(frmCriarConta);
+  TFormUtils.SetarTelaPrincipal(frmCriarConta);
   frmCriarConta.Show;
 
   Close;
-end;
-
-procedure TfrmLogin.SetarFormPrincipal(PNovoFormulario: TForm);
-var
-  tmpMain: ^TCustomForm;
-begin
-  tmpMain := @Application.Mainform;
-  tmpMain^ := PNovoFormulario;
 end;
 
 end.

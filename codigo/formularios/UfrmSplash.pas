@@ -18,7 +18,7 @@ uses
   Vcl.Imaging.pngimage,
   Vcl.StdCtrls,
 
-  UfrmLogomarca;
+  UfrmLogomarca, uFormUtils;
 
 type
   TfrmSplash = class(TForm)
@@ -34,7 +34,7 @@ type
     procedure InicializarAplicacao;
     procedure ShowPainelGestao;
     procedure ShowLogin;
-    procedure SetarFormPrincipal(NewMainForm: TForm);
+    //procedure SetarFormPrincipal(NewMainForm: TForm);
   public
     { Public declarations }
   end;
@@ -87,13 +87,13 @@ begin
   end;
 end;
 
-procedure TfrmSplash.SetarFormPrincipal(NewMainForm: TForm);
-var
-  tmpMain: ^TCustomForm;
-begin
-  tmpMain := @Application.Mainform;
-  tmpMain^ := NewMainForm;
-end;
+//procedure TfrmSplash.SetarFormPrincipal(NewMainForm: TForm);
+//var
+//  tmpMain: ^TCustomForm;
+//begin
+//  tmpMain := @Application.Mainform;
+//  tmpMain^ := NewMainForm;
+//end;
 
 procedure TfrmSplash.ShowLogin;
 begin
@@ -102,7 +102,7 @@ begin
     Application.CreateForm(TfrmLogin, frmLogin);
   end;
 
-  SetarFormPrincipal(frmLogin);
+  TFormUtils.SetarTelaPrincipal(frmLogin);
   frmLogin.Show;
 
   Close;
@@ -115,7 +115,7 @@ begin
     Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
   end;
 
-  SetarFormPrincipal(frmPainelGestao);
+  TFormUtils.SetarTelaPrincipal(frmPainelGestao);
   frmPainelGestao.Show;
 
   Close;

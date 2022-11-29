@@ -20,7 +20,8 @@ uses
   UusuarioDao in '..\codigo\dao\UusuarioDao.pas',
   UValidadorUsuario in '..\codigo\validadores\UValidadorUsuario.pas',
   UiniUtils in '..\codigo\utils\UiniUtils.pas',
-  UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {frmListaLogin};
+  UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {frmListaLogin},
+  uFormUtils in '..\codigo\utils\uFormUtils.pas';
 
 {$R *.res}
 
