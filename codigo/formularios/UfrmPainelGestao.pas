@@ -17,7 +17,7 @@ uses
   Vcl.ExtCtrls,
   Vcl.StdCtrls,
   Vcl.Imaging.pngimage,
-  UfrmItemMenu, UfrmUsuarios;
+  UfrmItemMenu, UfrmUsuarios, UfrmAutenticar;
 
 type
   TfrmPainelGestao = class(TForm)
@@ -43,6 +43,7 @@ type
     procedure frmMenuItemProdutoslblTituloClick(Sender: TObject);
     procedure frmMenuItemMesaslblTituloClick(Sender: TObject);
     procedure frmMenuItemComandaslblTituloClick(Sender: TObject);
+    procedure frmMenuItemPessoasClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -86,6 +87,15 @@ begin
     Application.CreateForm(TfrmMesas, frmMesas);
   end;
   frmMesas.show;
+end;
+
+procedure TfrmPainelGestao.frmMenuItemPessoasClick(Sender: TObject);
+begin
+if (not Assigned(frmListaLogin)) then
+  begin
+    Application.CreateForm(TfrmListaLogin, frmListaLogin);
+  end;
+  frmListaLogin.show;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemProdutoslblTituloClick(Sender: TObject);

@@ -29,5 +29,6 @@ object frmListaLogin: TfrmListaLogin
     Align = alBottom
     Caption = 'Resultado'
     TabOrder = 1
+    OnClick = btnResultClick
   end
 end

@@ -2336,6 +2336,7 @@ object frmPainelGestao: TfrmPainelGestao
       Width = 175
       Height = 40
       TabOrder = 2
+      OnClick = frmMenuItemPessoasClick
       ExplicitTop = 252
       inherited pnlFundo: TPanel
         inherited lblTitulo: TLabel

@@ -12,6 +12,7 @@ type
   TfrmListaLogin = class(TForm)
     mmResultado: TMemo;
     btnResult: TButton;
+    procedure btnResultClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,6 +26,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmListaLogin.btnResultClick(Sender: TObject);
+begin
+ // ListarUsuarios;
+end;
 
 function TfrmListaLogin.ListarUsuarios(PLista: TList<TUsuario>)
   : TList<TUsuario>;

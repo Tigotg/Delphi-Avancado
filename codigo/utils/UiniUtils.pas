@@ -11,10 +11,10 @@ uses
   IniFiles;
 
 type
-  TSECAO = (CONFIGURACOES, INFORMACOES_GERAIS, DATABASE);
+  TSECAO = (CONFIGURACOES, INFORMACOES_GERAIS, BANCO);
 
 type
-  TPROPRIEDADE = (NOME_DATABASE, LOGADO);// incluir os campos do login
+  TPROPRIEDADE = (LOGADO, SERVER, USUER_NAME, PASSWORD, DRIVER_ID, PORT, CAMINHO_BANCO, NAME_DATABASE);// incluir os campos do login
 
 type
   TIniUtils = class
@@ -26,14 +26,11 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    class procedure gravarPropriedade(PSecao: TSECAO;
-      PPropriedade: TPROPRIEDADE; PValor: String);
-    class function lerPropriedade(PSecao: TSECAO;
-      PPropriedade: TPROPRIEDADE): String;
+    class procedure gravarPropriedade(PSecao: TSECAO; PPropriedade: TPROPRIEDADE; PValor: String);
+    class function lerPropriedade(PSecao: TSECAO; PPropriedade: TPROPRIEDADE): String;
 
-      const VALOR_VERDADEIRO : String = 'True';
-      const VALOR_FALSO : String = 'False';
-
+    const VALOR_VERDADEIRO : String = 'True';
+    const VALOR_FALSO : String = 'False';
   end;
 
 implementation
@@ -55,36 +52,34 @@ end;
 class procedure TIniUtils.gravarPropriedade(PSecao: TSECAO;
   PPropriedade: TPROPRIEDADE; PValor: String);
 var
-  LcaminhoArquivoIni: String;
-  LarquivoINI: TIniFile;
+  LCaminhoArquivoIni: String;
+  LArquivoINI: TIniFile;
   LNomeSecao: String;
   LNomePropriedade: String;
 begin
-  LcaminhoArquivoIni := TPath.Combine(TPath.Combine(TPath.GetDocumentsPath,
+  LCaminhoArquivoIni := TPath.Combine(TPath.Combine(TPath.GetDocumentsPath,
     'ravin'), 'configuracoes.ini');
-  LarquivoINI := TIniFile.Create(LcaminhoArquivoIni);
+  LArquivoINI := TIniFile.Create(LCaminhoArquivoIni);
 
-  LNomeSecao := GetEnumName(
-    TypeInfo(TSECAO), Integer(PSecao));
+  LNomeSecao := GetEnumName(TypeInfo(TSECAO), Integer(PSecao));
+  LNomePropriedade := GetEnumName(TypeInfo(TPROPRIEDADE), Integer(PPropriedade));
 
-  LNomePropriedade := GetEnumName(
-    TypeInfo(TPROPRIEDADE), Integer(PPropriedade));
+  LArquivoINI.WriteString(LNomeSecao, LNomePropriedade, PValor);
 
-  LarquivoINI.WriteString(LNomeSecao, LNomePropriedade, Pvalor);
-  LarquivoINI.Free;
+  LArquivoINI.Free;
 end;
 
 class function TIniUtils.lerPropriedade(PSecao: TSECAO;
   PPropriedade: TPROPRIEDADE): String;
 var
-  LcaminhoArquivoIni: String;
-  LarquivoINI: TIniFile;
+  LCaminhoArquivoIni: String;
+  LArquivoINI: TIniFile;
   LNomeSecao : String;
   LNomePropriedade : String;
 begin
-  LcaminhoArquivoIni := TPath.Combine(TPath.Combine(TPath.GetDocumentsPath,
+  LCaminhoArquivoIni := TPath.Combine(TPath.Combine(TPath.GetDocumentsPath,
     'ravin'), 'configuracoes.ini');
-  LarquivoINI := TIniFile.Create(LcaminhoArquivoIni);
+  LArquivoINI := TIniFile.Create(LCaminhoArquivoIni);
 
     LNomeSecao := GetEnumName(
     TypeInfo(TSECAO), Integer(PSecao));
@@ -92,8 +87,8 @@ begin
   LNomePropriedade := GetEnumName(
     TypeInfo(TPROPRIEDADE), Integer(PPropriedade));
 
-  Result := LarquivoINI.ReadString(LNomeSecao, LNomePropriedade, '');
-  LarquivoINI.Free;
+  Result := LArquivoINI.ReadString(LNomeSecao, LNomePropriedade, '');
+  LArquivoINI.Free;
 end;
 
 end.

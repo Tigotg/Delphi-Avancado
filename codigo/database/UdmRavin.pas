@@ -32,7 +32,7 @@ var
 implementation
 
 uses
-  uResourceUtils;
+  uResourceUtils, UiniUtils;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
@@ -40,9 +40,11 @@ uses
 procedure TdmRavin.cnxBancoDeDadosAfterConnect(Sender: TObject);
 var
   LCriarBaseDados: Boolean;
+  LcaminhoBAnco: String;
 begin
-  LCriarBaseDados := not FileExists('C:\ProgramData\MySQL\' +
-                                    'MySQL Server 8.0\Data\ravin\pessoa.ibd');
+  LcaminhoBAnco := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.CAMINHO_BANCO);
+  LCriarBaseDados := not FileExists(LcaminhoBAnco);
+
   if LCriarBaseDados then
     begin
       CriarTabelas;
@@ -53,20 +55,22 @@ end;
 procedure TdmRavin.cnxBancoDeDadosBeforeConnect(Sender: TObject);
 var
   LCriarBaseDados: Boolean;
+  LcaminhoBAnco: String;
 begin
-  LCriarBaseDados := not FileExists('C:\ProgramData\MySQL\' +
-                                    'MySQL Server 8.0\Data\ravin\pessoa.ibd');
+  LcaminhoBAnco := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.CAMINHO_BANCO);
+  LCriarBaseDados := not FileExists(LcaminhoBAnco);
+
   with cnxBancoDeDados do
   begin
-    Params.Values['Server'] := 'localhost';
-    Params.Values['User_Name'] := 'root';
-    Params.Values['Password'] := 'root';
-    Params.Values['DriverId'] := 'MySQL';
-    Params.Values['Port'] := '3306';
+    Params.Values['Server'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.SERVER);
+    Params.Values['User_Name'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.USUER_NAME);
+    Params.Values['Password'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.PASSWORD);
+    Params.Values['DriverId'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.DRIVER_ID);
+    Params.Values['Port'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.PORT);
 
     if not LCriarBaseDados then
       begin
-        Params.Values['Database'] := 'ravin';
+        Params.Values['Database'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.NAME_DATABASE);
       end;
   end;
 
@@ -135,37 +139,5 @@ begin
     End;
   end;
 end;
-
-{
-Lista de Exercícios de SQL:
-1 Qual o produto com o maior preço de custo;
-2 Qual o produto com o maior preço de venda;
-3 Qual produto com o menor preço de custo;
-4 Qual produto com o menor preço de venda;
-5 A comanda mais recente;
-6 A comanda mais velha;
-7 A comanda com maior valor (baseado no valor da comanda);
-8 As 3 comandas com maior valor ordenadas em ordem crescente;
-9 Busque os clientes que são aniversariantes do mês;
-10 Mesas sem atendente;
-11 Quantos atendentes;
-12 Quantidade de comandas dos dois últimos anos;
-13 O maior valor de comanda (considerando apenas o valor da comanda) dia a dia do mês atual;
-14 O valor de cada comanda (baseado nos itens) juntamente com o item mais caro da comanda;
-15 O valor que cada cliente já gastou no restaurante;
-16 Listar o código das mesas juntamente com o nome dos atendentes responsáveis por cada mesa (apenas as mesas que contém atendente);
-17 Listar as comandas com seus produtos mostrando o código da comanda e o nome do produto;
-18 Listar as comandas mostrando o valor total de cada comanda;
-19 Buscar a comanda que teve a maior valor, mostrando o código da comanda, o valor da comanda e o nome do atendente responsável por aquela comanda;
-20 Quantidade de clientes em cada dia;
-21 O funcionário mais velho que já fez algum atendimento
-22 A comanda com maior valor (valor da Comanda) e que não está paga
-23 A comanda com menor valor (valor da Comanda) e que já está paga
-24 Quantos clientes tem comandas em aberto
-25 Quanto cada mesa já arrecadou
-26 Quantidade de clientes que nunca consumiram no restaurante
-27 Os cliente que nunca consumiram no restaurante
-28 As comandas que estão em mesas ocupadas (juntamente com seu valor);
-29 Os 10 produtos mais vendidos (ultimo mês)}
 
 end.
