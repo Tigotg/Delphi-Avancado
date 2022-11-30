@@ -11,6 +11,7 @@ object frmMesas: TfrmMesas
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
@@ -369,7 +370,6 @@ object frmMesas: TfrmMesas
     end
   end
   object tblMesas: TFDTable
-    Active = True
     BeforePost = tblMesasBeforePost
     IndexFieldNames = 'id'
     Connection = dmRavin.cnxBancoDeDados

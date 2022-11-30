@@ -127,7 +127,7 @@ object frmCriarConta: TfrmCriarConta
       Font.Style = [fsBold]
       ParentFont = False
       PasswordChar = '*'
-      TabOrder = 1
+      TabOrder = 3
       TextHint = 'Digite Sua Senha'
     end
     object edtContaLogin: TEdit
@@ -159,8 +159,10 @@ object frmCriarConta: TfrmCriarConta
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 1
       TextHint = 'Digite Seu CPF'
+      OnChange = edtContaCPFChange
+      OnExit = edtContaCPFExit
     end
     object edtContaConfSenha: TEdit
       Left = 64

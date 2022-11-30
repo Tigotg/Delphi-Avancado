@@ -1,4 +1,4 @@
-unit UfrmLogin;
+unit UfrmLogin; //UfrmAutenticar do professor
 
 interface
 
@@ -36,77 +36,67 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmCriarConta, UfrmPainelGestao, UusuarioDao, UiniUtils, uFormUtils;
-
-//procedure TfrmLogin.Button1Click(Sender: TObject);
-//var
-//  LUsuario: TUsuario;
-//  LDao: TUsuarioDao;
-//begin
-//  LUsuario := TUsuario.Create;
-//  with LUsuario do
-//  begin
-//    Login := 'Teste';
-//    Senha := '123';
-//    PessoaId := 1;
-//    CriadoEm := Now();
-//    CriadoPor := 'Tiago';
-//    AlteradoEm := Now();
-//    AlteradoPor := 'Tiago';
-//  end;
-//  LDao := TUsuarioDao.Create;
-//  LDao.InserirUsuario(LUsuario);
-//
-//  FreeAndNil(LDao);
-//  FreeAndNil(LUsuario);
-//end;
+uses
+  UfrmCriarConta, UfrmPainelGestao, UusuarioDao, UiniUtils, uFormUtils;
 
 procedure TfrmLogin.frmAutenticar1spbBotaoFrameClick(Sender: TObject);
 var
-  LDao: TUsuarioDao;
+  LUsuarioDAO: TUsuarioDAO;
   LUsuario: TUsuario;
-
   LLogin: String;
   LSenha: String;
-
 begin
-  LDao := TUsuarioDao.Create;
+  LusuarioDAO := nil;
+  LUsuario := nil;
 
   LLogin := edtLoginUsuario.Text;
   LSenha := edtLoginSenha.Text;
 
-  LUsuario := LDao.BuscarUsuarioPorLoginSenha(LLogin, LSenha);
-
-  if assigned(LUsuario) then
+  if (not LLogin.IsEmpty) and (not LSenha.IsEmpty) then
   begin
-    //Conseguiu Logar
+    LusuarioDAO := TUsuarioDAO.Create;
+    Lusuario := LusuarioDAO.BuscarUsuarioPorLoginSenha(Llogin, LSenha);
 
-    TIniUtils.gravarPropriedade(TSecao.INFORMACOES_GERAIS, TPROPRIEDADE.LOGADO,
-                                TIniUtils.VALOR_VERDADEIRO);
-
-    if not assigned(frmPainelGestao) then
+    if Assigned(Lusuario) then
     begin
-      Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
-    end;
-    TFormUtils.SetarTelaPrincipal(frmPainelGestao);
-    frmPainelGestao.Show;
+      //Conseguiu logar
 
-    Close;
+      TIniUtils.gravarPropriedade(
+        TSECAO.INFORMACOES_GERAIS,
+        TPROPRIEDADE.LOGADO, TIniUtils.VALOR_VERDADEIRO);
+
+      if not Assigned(frmPainelGestao) then
+      begin
+        Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+      end;
+
+      TFormUtils.SetarTelaPrincipal(frmPainelGestao);
+      frmPainelGestao.Show;
+
+      Close;
+    end
+    else
+    begin
+      ShowMessage('Login e/ou senha inválido');
+    end;
   end
   else
   begin
-    ShowMessage('Login e/ou Senha Inválidos');
+    ShowMessage('Login e senha são obrigatórios');
   end;
-  FreeAndNil(LDao);
-  FreeAndNil(LUsuario);
+
+  FreeAndNil(LusuarioDAO);
+  FreeAndNil(Lusuario);
+
 end;
 
 procedure TfrmLogin.lblCliquepararegistrarClick(Sender: TObject);
 begin
-  if not assigned(frmCriarConta) then
+  if not Assigned(frmCriarConta) then
   begin
     Application.CreateForm(TfrmCriarConta, frmCriarConta);
   end;
+
   TFormUtils.SetarTelaPrincipal(frmCriarConta);
   frmCriarConta.Show;
 

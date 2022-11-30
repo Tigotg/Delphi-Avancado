@@ -1,4 +1,4 @@
-unit UfrmCriarConta;
+unit UfrmCriarConta; //UfrmRegistrar do Professor
 
 interface
 
@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UfrmAutenticar, Vcl.StdCtrls,
-  Vcl.ExtCtrls, FireDAC.Phys.MySQLWrapper;
+  Vcl.ExtCtrls, FireDAC.Phys.MySQLWrapper, System.Math, UValidaTipoPessoa;
 
 type
   TfrmCriarConta = class(TForm)
@@ -23,11 +23,14 @@ type
     edtContaCPF: TEdit;
     edtContaConfSenha: TEdit;
     frmAutenticar1: TfrmAutenticar;
+
     procedure lblCliquepararegistrarClick(Sender: TObject);
     procedure frmAutenticar1spbBotaoFrameClick(Sender: TObject);
+    procedure edtContaCPFChange(Sender: TObject);
+    procedure edtContaCPFExit(Sender: TObject);
+
   private
     { Private declarations }
-    procedure SetarFormularioLogin(PFromularioLogin: TForm);
   public
     { Public declarations }
   end;
@@ -39,7 +42,31 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmLogin, Uusuario, UusuarioDao, UValidadorUsuario;
+uses UfrmLogin, UUsuario, UUsuarioDao, UValidadorUsuario,
+  uFormUtils;//, UValidaTipoPessoa;
+
+
+procedure TfrmCriarConta.edtContaCPFChange(Sender: TObject);
+begin
+  TValidaTipoPessoa.ValidaCNPJ(edtContaCPF.Text);
+end;
+
+procedure TfrmCriarConta.edtContaCPFExit(Sender: TObject);
+begin
+  if edtContaCPF.Text<>'' Then
+
+	if TValidaTipoPessoa.ValidaCNPJ(edtContaCPF.Text) = False Then
+
+	Begin
+
+  	MessageDlg('CPF informado é incorreto!',mtError, [mbOk],0);
+
+  	edtContaCPF.SetFocus;
+
+	End;
+
+//* Troque NOMECAMPO pela propriedade Name do campo.
+end;
 
 procedure TfrmCriarConta.frmAutenticar1spbBotaoFrameClick(Sender: TObject);
 var
@@ -84,6 +111,13 @@ begin
     end;
 
     FreeAndNil(LUsuario);
+
+    edtContaLoginUsuario.Clear;
+    edtContaLoginSenha.Clear;
+    edtContaLogin.Clear;
+    edtContaCPF.Clear;
+    edtContaConfSenha.Clear;
+    edtContaLoginUsuario.SetFocus;
   end;
 end;
 
@@ -93,18 +127,10 @@ begin
   begin
     Application.CreateForm(TfrmLogin, frmLogin);
   end;
-  SetarFormularioLogin(frmLogin);
+  TFormUtils.SetarTelaPrincipal(frmLogin);
   frmLogin.Show;
 
   Close;
-end;
-
-procedure TfrmCriarConta.SetarFormularioLogin(PFromularioLogin: TForm);
-var
-  tmpMain: ^TCustomForm;
-begin
-  tmpMain := @Application.Mainform;
-  tmpMain^ := PFromularioLogin;
 end;
 
 end.

@@ -21,7 +21,8 @@ uses
   UValidadorUsuario in '..\codigo\validadores\UValidadorUsuario.pas',
   UiniUtils in '..\codigo\utils\UiniUtils.pas',
   UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {frmListaLogin},
-  uFormUtils in '..\codigo\utils\uFormUtils.pas';
+  uFormUtils in '..\codigo\utils\uFormUtils.pas',
+  uValidaTipoPessoa in '..\codigo\validadores\uValidaTipoPessoa.pas';
 
 {$R *.res}
 
@@ -31,7 +32,5 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.CreateForm(TdmRavin, dmRavin);
   Application.CreateForm(TfrmSplash, frmSplash);
-  Application.CreateForm(TfrmCriarConta, frmCriarConta);
-  Application.CreateForm(TfrmListaLogin, frmListaLogin);
   Application.Run;
 end.
