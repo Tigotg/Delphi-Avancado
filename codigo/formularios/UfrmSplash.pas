@@ -126,41 +126,33 @@ end;
 -- 1ª Forma de fazer
 select (precoCusto)Maior_Preco_Custo, id, (nome)Nome_Produto from produto
 where precoCusto = (select max(precoCusto) from produto);
-
 -- 2ª Forma de fazer
 select (precoCusto)Maior_Preco_Custo, id, (nome)Nome_Produto from produto
 order by precocusto desc limit 1; -- 0,4;
-
 -- 2º Exercicio
 -- Qual o produto com o maior preço de venda
 select (precovenda)Maior_Preco_Venda, id, (nome)Nome_Produto from produto
 where precovenda = (select max(precovenda) from produto);
-
 -- 3º Exercicio
 -- Qual produto com o menor preço de custo
 select (precocusto)Menor_Preco_Custo, id, (nome)Nome_Produto from produto
 where precocusto = (select min(precocusto) from produto);
-
 -- 4º Exercicio
 -- Qual produto com o menor preço de venda
 select (precovenda)Menor_Preco_Venda, id, (nome)Nome_Produto from produto
 where precovenda = (select min(precovenda) from produto);
-
 -- 5º Exercicio
 -- A comanda mais recente
 select (criadoEm)Mais_Rescente, id, (codigo)Codigo_mesa from comanda
 order by criadoEm desc limit 1;
-
 -- 6º Exercicio
 -- A comanda mais velha
 select (criadoEm)Mais_Antiga, id, (codigo)Codigo_mesa from comanda
 order by criadoEm asc limit 1;
-
 -- 7º Exercicio
 -- A comanda com maior valor (baseado no valor da comanda)
 select id, (codigo)Codigo_Comanda, (valor)Valor_Comanda from comanda
 where valor = (select max(valor) from comanda);
-
 -- 8º Exercicio
 --  As 3 comandas com maior valor ordenadas em ordem crescente
 select valor from comanda
@@ -172,48 +164,36 @@ union
 select valor from comanda
 where valor = (select count(valor) from comanda)
 order by 1 asc limit 3;
-
 -- 9º Exercicio
 -- Busque os clientes que são aniversariantes do mês
 select * from pessoa
 where criadoEm between '2022-11-01 00:00:00' and '2022-11-30 00:00:00'
 and tipoPessoa = 'C';
-
 -- 10º Exercicio
 -- Mesas sem atendente
 select * from mesa
 where atendenteId is null;
-
 -- 11º Exercicio
 -- Quantos atendentes
 select count(tipoPessoa)Total_Atendentes from pessoa
 where tipoPessoa = 'F';
-
 -- 12º Exercicio
 -- Quantidade de comandas dos dois últimos anos
 select count(criadoEm)Total_Comandas from comanda
 where criadoEm between '2020-11-01 00:00:00' and '2022-11-01 00:00:00';
-
 -- 13º Exercicio
 -- O maior valor de comanda (considerando apenas o valor da comanda) dia a dia do mês atual
 select c.valor, c.criadoEm
 from comanda c where c.criadoem like '2022-10%'
 group by c.valor having max(c.valor) order by c.criadoem ;
-
 -- 14º Exercicio
 -- O valor de cada comanda (baseado nos itens) juntamente com o item mais caro da comanda
-
 select distinct (c.valor)Valor_Comanda from comanda as c
 union
 select  max(cp.valorTotal)Maior_Valor  from comandaproduto as cp
 -- inner join comandaproduto on
 -- comandaproduto.comandaId = comanda.id
 group by c.Valor_Comanda, cp.Maior_Valor having (id);
-
-
-
-
-
 
 
 

@@ -48,6 +48,10 @@ uses UfrmLogin, UUsuario, UUsuarioDao, UValidadorUsuario,
 
 procedure TfrmCriarConta.edtContaCPFChange(Sender: TObject);
 begin
+  if edtContaCPF.Text <> '' then
+  if TValidaTipoPessoa.ValidaCNPJ(edtContaCPF.Text) then
+
+
   TValidaTipoPessoa.ValidaCNPJ(edtContaCPF.Text);
 end;
 
@@ -64,7 +68,7 @@ begin
   	edtContaCPF.SetFocus;
 
 	End;
-
+//
 //* Troque NOMECAMPO pela propriedade Name do campo.
 end;
 
